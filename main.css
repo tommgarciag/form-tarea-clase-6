@@ -1,0 +1,8 @@
+.oculto {
+    display: none;
+}
+
+.display {
+    display: flex;
+    padding: 20px;
+}
