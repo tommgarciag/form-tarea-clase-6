@@ -18,6 +18,18 @@ document.querySelector("#calcular").onclick = function(event){
     event.preventDefault();
 };
 
+document.querySelector("#agregar-salarios").onclick = function(event){
+    const $cantidad = document.querySelector("#cantidad-integrantes");
+    const cantidad = Number($cantidad.value);
+
+    
+    crearSalarios(cantidad);
+
+    event.preventDefault();
+    
+};
+
+
 document.querySelector("#resetear").onclick = resetear;
 
 function borrarIntegrantesAnteriores(){
@@ -33,6 +45,7 @@ function borrarIntegrantesAnteriores(){
 function crearIntegrantes(cantidadIntegrantes){ 
     if (cantidadIntegrantes > 0){
         mostrarBotonCalculo();
+        mostrarBotonAgregarSalarios();
                 
     } else {
         resetear();
@@ -63,6 +76,33 @@ function crearIntegrante(indice){
     $integrantes.appendChild($div);  
 }
 
+function crearSalarios(cantidadIntegrantes){ 
+  
+    for(let i = 0 ; i < cantidadIntegrantes ;i++){
+        
+        crearInputIngresoSalarios(i);       
+    }
+}
+
+function crearInputIngresoSalarios(indice){
+    const $divSalarios = document.createElement('div');
+    $divSalarios.className = 'salario-integrante';
+    
+
+    const $labelSalarios = document.createElement('label');
+    $labelSalarios.textContent = 'Ingrese el salario del integrante: ';
+
+    const $inputSalarios = document.createElement('input');
+    $inputSalarios.type = 'number';    
+
+    $divSalarios.appendChild($labelSalarios);
+    $divSalarios.appendChild($inputSalarios);
+
+    const $salarios = document.querySelector('#salarios');
+    $salarios.appendChild($divSalarios);
+}
+
+
 function resetear(){
     borrarIntegrantesAnteriores();
     ocultarBotonCalculo();       
@@ -75,6 +115,10 @@ function mostrarBotonCalculo(){
 
 function ocultarBotonCalculo(){
     document.querySelector("#calcular").className = "oculto";
+}
+
+function mostrarBotonAgregarSalarios(){
+    document.querySelector("#agregar-salarios").className = "";
 }
 
 function mostrarResultados(){
@@ -98,3 +142,5 @@ function obtenerEdadesIntegrantes(){
     }
     return edades;
 }
+
+
