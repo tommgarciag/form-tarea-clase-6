@@ -18,6 +18,8 @@ document.querySelector("#calcular").onclick = function(event){
     event.preventDefault();
 };
 
+document.querySelector("#resetear").onclick = resetear;
+
 function borrarIntegrantesAnteriores(){
     const $integrantes = document.querySelectorAll(".integrante");
     for(let i = 0 ; i < $integrantes.length ;i++){
@@ -25,10 +27,17 @@ function borrarIntegrantesAnteriores(){
     }
 }
 
+
+
+
 function crearIntegrantes(cantidadIntegrantes){ 
     if (cantidadIntegrantes > 0){
         mostrarBotonCalculo();
-    }    
+                
+    } else {
+        resetear();
+    }
+
     for(let i = 0 ; i < cantidadIntegrantes ;i++){
         crearIntegrante(i);
               
@@ -54,12 +63,26 @@ function crearIntegrante(indice){
     $integrantes.appendChild($div);  
 }
 
+function resetear(){
+    borrarIntegrantesAnteriores();
+    ocultarBotonCalculo();       
+    ocultarResultados();
+}
+
 function mostrarBotonCalculo(){
     document.querySelector("#calcular").className = "";
 }
 
+function ocultarBotonCalculo(){
+    document.querySelector("#calcular").className = "oculto";
+}
+
 function mostrarResultados(){
     document.querySelector("#analisis").className = "";
+}
+
+function ocultarResultados(){
+    document.querySelector("#analisis").className = "oculto";
 }
 
 function mostrarEdad(tipo,valor){
