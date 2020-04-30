@@ -28,3 +28,13 @@ function obtenerPromedio(numeros){
     return (acumulador / numeros.length).toFixed(2);
     
 }
+
+function obtenerPromedioMensual(numeros){
+    let acumulador = 0;    
+    for(let i = 0; i < numeros.length ; i++){
+        acumulador += numeros[i] / 12;
+    }
+    return (acumulador / numeros.length).toFixed(2);
+    
+}
+
