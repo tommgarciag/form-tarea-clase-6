@@ -1,8 +1,7 @@
 # form-tarea-clase-6
  r/argentinaprograma
 
-# form-tarea-clase-7
- 
+
 # Crear formulario
 
 TAREA 1: 
