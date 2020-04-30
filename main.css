@@ -6,3 +6,11 @@
     display: flex;
     padding: 20px;
 }
+
+#salarios div {
+    margin-left: 20px;
+}
+
+#resultados {
+    margin-left: 150px;
+}
