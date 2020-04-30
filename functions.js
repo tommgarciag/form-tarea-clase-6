@@ -37,4 +37,3 @@ function obtenerPromedioMensual(numeros){
     return (acumulador / numeros.length).toFixed(2);
     
 }
-

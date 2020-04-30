@@ -224,7 +224,3 @@ function obtenerSalarios(){
     }
     return salarioIntegrantes;
 }
-
-
-
-
