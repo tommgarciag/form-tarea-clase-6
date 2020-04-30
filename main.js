@@ -1,3 +1,5 @@
+//-------------------------  EDAD INTEGRANTES  ---------------------------//
+
 document.querySelector("#siguiente-paso").onclick = function(event) {
     const $cantidadIntegrantes = document.querySelector("#cantidad-integrantes");
     const cantidadIntegrantes = Number($cantidadIntegrantes.value);
@@ -51,13 +53,13 @@ function borrarIntegrantesAnteriores(){
 }
 
 
-//------------------------------------------------------------------------------------
+//----------------------  SALARIO INTEGRANTES  -------------------------//
 
 document.querySelector("#agregar-salarios").onclick = function(event){
     const $cantidad = document.querySelector("#cantidad-integrantes");
     const cantidad = Number($cantidad.value);
 
-    
+    borrarSalariosAnteriores();
     crearSalarios(cantidad);
 
     event.preventDefault();
@@ -69,6 +71,8 @@ function crearSalarios(cantidadIntegrantes){
     if (cantidadIntegrantes > 0){
         
         mostrarBotonCalcularSalarios();
+    } else {
+        resetear();
     }
 
     for(let i = 0 ; i < cantidadIntegrantes ;i++){
@@ -95,17 +99,29 @@ function crearInputIngresoSalarios(indice){
     $salarios.appendChild($divSalarios);
 }
 
-// ----------------------------------------------------------------------------------
+function borrarSalariosAnteriores(){
+    const $inputSalario = document.querySelectorAll(".salario-integrante");
+    for (let i = 0; i < $inputSalario.length; i++){
+        $inputSalario[i].remove();
+    }
+}
+
+
+// -------------------------   RESET  -------------------------------//
 
 document.querySelector("#resetear").onclick = resetear;
 
 function resetear(){
     borrarIntegrantesAnteriores();
-    ocultarBotonCalculo();       
+    ocultarBotonCalculo();
+    borrarSalariosAnteriores();
+    ocultarBotonAgregarSalarios();
+    ocultarBotonCalcularSalarios();
     ocultarResultados();
+    ocultarResultadoSalario();
 }
 
-//----------------------------------------------------------------------------------
+//----------------------------  BOTONES  ----------------------------//
 
 function mostrarBotonCalculo(){
     document.querySelector("#calcular").className = "";
@@ -118,12 +134,21 @@ function ocultarBotonCalculo(){
 function mostrarBotonAgregarSalarios(){
     document.querySelector("#agregar-salarios").className = "";
 }
+function ocultarBotonAgregarSalarios(){
+    document.querySelector("#agregar-salarios").className = "oculto";
+}
 
 function mostrarBotonCalcularSalarios(){
     document.querySelector("#calcular-salarios").className = "";
 }
 
-// ----------------------------------------------------------------------------------
+function ocultarBotonCalcularSalarios(){
+    document.querySelector("#calcular-salarios").className = "oculto";
+}
+
+
+
+// --------------------------  RESULTADOS  ------------------------------//
 
 function mostrarResultados(){
     document.querySelector("#analisis").className = "";
@@ -137,9 +162,13 @@ function mostrarResultadoSalario(){
     document.querySelector("#resultados").className = "";
 }
 
+function ocultarResultadoSalario(){
+    document.querySelector("#resultados").className = "oculto";
+}
 
 
-// --------------------------------------------------------------------------
+
+// ----------------------------  EDADES  -------------------------------//
 
 document.querySelector("#calcular").onclick = function(event){
     const numeros = obtenerEdadesIntegrantes();
@@ -165,7 +194,7 @@ function obtenerEdadesIntegrantes(){
     return edades;
 }
 
-//-----------------------------------------------------------------------------
+//----------------------------  SALARIOS  --------------------------------//
 
 document.querySelector("#calcular-salarios").onclick = function(event){
     const inputSalarios = obtenerSalarios();
