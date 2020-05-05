@@ -10,17 +10,6 @@ document.querySelector("#siguiente-paso").onclick = function(event) {
     event.preventDefault();
 };
 
-document.querySelector("#calcular").onclick = function(event){
-    const numeros = obtenerEdadesIntegrantes();
-    mostrarEdad('mayor', obtenerMayorNumero(numeros));
-    mostrarEdad('menor', obtenerMenorNumero(numeros));
-    mostrarEdad('promedio', obtenerPromedio(numeros));
-    mostrarResultados();
-
-    event.preventDefault();
-};
-
-document.querySelector("#resetear").onclick = resetear;
 
 function borrarIntegrantesAnteriores(){
     const $integrantes = document.querySelectorAll(".integrante");
@@ -28,9 +17,6 @@ function borrarIntegrantesAnteriores(){
         $integrantes[i].remove();
     }
 }
-
-
-
 
 function crearIntegrantes(cantidadIntegrantes){ 
     if (cantidadIntegrantes > 0){
@@ -56,7 +42,8 @@ function crearIntegrante(indice){
     $label.textContent = 'Edad del integrante #' + (indice + 1);
 
     const $input = document.createElement('input');
-    $input.type = 'number';   
+    $input.type = 'number';
+    $input.name = 'edad';   
    
 
     $div.appendChild($label);
@@ -66,11 +53,6 @@ function crearIntegrante(indice){
     $integrantes.appendChild($div);  
 }
 
-function resetear(){
-    borrarIntegrantesAnteriores();
-    ocultarBotonCalculo();       
-    ocultarResultados();
-}
 
 function borrarIntegrantesAnteriores(){
     const $integrantes = document.querySelectorAll(".integrante");
@@ -117,7 +99,8 @@ function crearInputIngresoSalarios(indice){
     $labelSalarios.textContent = 'Ingrese el salario del integrante: ';
 
     const $inputSalarios = document.createElement('input');
-    $inputSalarios.type = 'number';    
+    $inputSalarios.type = 'number';
+    
 
     $divSalarios.appendChild($labelSalarios);
     $divSalarios.appendChild($inputSalarios);
@@ -199,6 +182,7 @@ function ocultarResultadoSalario(){
 
 document.querySelector("#calcular").onclick = function(event){
     const numeros = obtenerEdadesIntegrantes();
+    validarEdades(numeros);
     mostrarEdad('mayor', obtenerMayorNumero(numeros));
     mostrarEdad('menor', obtenerMenorNumero(numeros));
     mostrarEdad('promedio', obtenerPromedio(numeros));
