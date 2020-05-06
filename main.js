@@ -10,27 +10,12 @@ document.querySelector("#siguiente-paso").onclick = function(event) {
     event.preventDefault();
 };
 
-document.querySelector("#calcular").onclick = function(event){
-    const numeros = obtenerEdadesIntegrantes();
-    mostrarEdad('mayor', obtenerMayorNumero(numeros));
-    mostrarEdad('menor', obtenerMenorNumero(numeros));
-    mostrarEdad('promedio', obtenerPromedio(numeros));
-    mostrarResultados();
-
-    event.preventDefault();
-};
-
-document.querySelector("#resetear").onclick = resetear;
-
 function borrarIntegrantesAnteriores(){
     const $integrantes = document.querySelectorAll(".integrante");
     for(let i = 0 ; i < $integrantes.length ;i++){
         $integrantes[i].remove();
     }
 }
-
-
-
 
 function crearIntegrantes(cantidadIntegrantes){ 
     if (cantidadIntegrantes > 0){
@@ -56,7 +41,8 @@ function crearIntegrante(indice){
     $label.textContent = 'Edad del integrante #' + (indice + 1);
 
     const $input = document.createElement('input');
-    $input.type = 'number';   
+    $input.type = 'number'; 
+    $input.name = 'edad'+(indice + 1);  
    
 
     $div.appendChild($label);
@@ -64,12 +50,6 @@ function crearIntegrante(indice){
 
     const $integrantes = document.querySelector('#integrantes');
     $integrantes.appendChild($div);  
-}
-
-function resetear(){
-    borrarIntegrantesAnteriores();
-    ocultarBotonCalculo();       
-    ocultarResultados();
 }
 
 function borrarIntegrantesAnteriores(){
@@ -251,3 +231,4 @@ function obtenerSalarios(){
     }
     return salarioIntegrantes;
 }
+
