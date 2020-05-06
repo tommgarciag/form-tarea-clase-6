@@ -179,6 +179,8 @@ function ocultarResultadoSalario(){
 
 document.querySelector("#calcular").onclick = function(event){
     const numeros = obtenerEdadesIntegrantes();
+    validarEdades(numeros);
+
     mostrarEdad('mayor', obtenerMayorNumero(numeros));
     mostrarEdad('menor', obtenerMenorNumero(numeros));
     mostrarEdad('promedio', obtenerPromedio(numeros));
